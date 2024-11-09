@@ -1,5 +1,4 @@
-python[3.10.4]
-streamlit-mic-recorder
+streamlit
 pydub
 aift
 configparser
