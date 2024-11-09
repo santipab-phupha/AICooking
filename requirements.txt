@@ -1,3 +1,4 @@
+streamlit-mic-recorder
 pydub
 aift
 configparser
@@ -5,8 +6,4 @@ requests
 jsonlib
 subprocess-run
 protobuf
-grpc
-time
-wave
-numpy 
-sys
+grpcio
