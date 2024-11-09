@@ -2,7 +2,7 @@ aift==1.1.0
 grpcio==1.67.1
 numpy==2.1.3
 protobuf==5.28.3
-PyAudio==0.2.13
+PyAudio
 pydub==0.25.1
 Requests==2.32.3
 six==1.16.0
