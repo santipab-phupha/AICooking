@@ -1,4 +1,4 @@
---upgrade pip
+-upgrade pip
 streamlit==1.40.0
 streamlit-mic-recorder
 pydub
