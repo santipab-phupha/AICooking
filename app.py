@@ -7,18 +7,14 @@ import configparser
 import requests
 import json
 import os
-import subprocess
+import subprocess   
 
 setting.set_api_key('T69FqnYgOdreO5G0nZaM8gHcjo1sifyU')
 
-st.title("Audio Translator and TextQA")
-
-# Region selection dropdown
-st.write("### Step 1: Select your dialect")
-land = ["โปรดเลือกภาษาถิ่นของคุณ", "อีสาน", "เหนือ", "ใต้"]
+st.write("# เลือกภาษาถิ่น")
+land = ["< โปรดเลือกภาษาถิ่นของคุณ >", "อีสาน", "เหนือ", "ใต้"]
 selected_region = st.selectbox("Select Region:", land, index=0)
 
-# Region ports mapping
 region_ports = {
     "อีสาน": 27020,
     "เหนือ": 27021,
@@ -26,40 +22,34 @@ region_ports = {
 }
 
 config = configparser.ConfigParser()
-config.read("./config.ini")
+config.read("config.ini")
 
 new_port = str(region_ports.get(selected_region, config["DEFAULT"].get("_server_port", "27021")))
 config["DEFAULT"]["_server_port"] = new_port
 config["SERVER"]["_server_port"] = new_port
 
-with open("./config.ini", "w") as configfile:
+with open("config.ini", "w") as configfile:
     config.write(configfile)
 
-st.write("### Step 2: Record your audio")
-with st.spinner("Recording..."):
-    audio_data = mic_recorder(
-        start_prompt="Start Recording",
-        stop_prompt="Stop Recording",
-        just_once=True,
-        use_container_width=True,
-        key="recorder"
-    )
+audio_value = st.audio_input("Record a voice message")
 
-if audio_data:
-    st.audio(audio_data['bytes'], format='audio/wav')
-    st.success("Recording complete.")
+if audio_value is not None:
 
-    # Save recorded audio to a temporary file for processing
-    temp_path = "temp_recorded.wav"
-    with open(temp_path, "wb") as f:
-        f.write(audio_data['bytes'])
+    st.audio(audio_value)
+    audio_bytes = audio_value.getvalue()  
+    file_path = "./recorded_audio.wav"
+    with open(file_path, "wb") as file:
+        file.write(audio_bytes) 
+    temp_file = "./recorded_audio.wav"
+    with open(temp_file, "wb") as file:
+        file.write(audio_bytes)
 
-    # Process the audio
-    audio = AudioSegment.from_file(temp_path, format="wav")
+    audio = AudioSegment.from_wav(temp_file)
     audio = audio.set_frame_rate(16000).set_channels(1)
-    output_file = "temp_converted.wav"
+    output_file = "recorded_audio.wav"
     audio.export(output_file, format="wav")
 
+    st.success(f"Audio saved and modified as {output_file}")
     # Run external process to get transcript
     command = ["python", "partii-client-process-wav-file.py", output_file, "T69FqnYgOdreO5G0nZaM8gHcjo1sifyU"]
     result = subprocess.run(command, capture_output=True, text=True)
@@ -85,8 +75,5 @@ if audio_data:
     else:
         st.error("Failed to extract transcript.")
 
-    # Clean up temporary files
-    os.remove(temp_path)
-    os.remove(output_file)
 else:
     st.warning("Please select your dialect before recording.")
