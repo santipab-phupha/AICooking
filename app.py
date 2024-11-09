@@ -26,13 +26,13 @@ region_ports = {
 }
 
 config = configparser.ConfigParser()
-config.read("config.ini")
+config.read("./config.ini")
 
 new_port = str(region_ports.get(selected_region, config["DEFAULT"].get("_server_port", "27021")))
 config["DEFAULT"]["_server_port"] = new_port
 config["SERVER"]["_server_port"] = new_port
 
-with open("config.ini", "w") as configfile:
+with open("./config.ini", "w") as configfile:
     config.write(configfile)
 
 st.write("### Step 2: Record your audio")
