@@ -1,2 +1,7 @@
+streamlit
 streamlit-mic-recorder
-pydub 
+pydub
+aift
+configparser
+requests
+jsonlib-python3
