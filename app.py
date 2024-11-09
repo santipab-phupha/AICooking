@@ -6,8 +6,7 @@ import configparser
 import requests
 import json
 import subprocess
-import whisper
-# Set up API key for aift
+
 st.set_page_config(layout="wide")
 
 st.markdown(
@@ -69,27 +68,12 @@ with col1:
             country = "Chinese"
             open("country.txt", "w").write("Chinese")
 
-    audio_value = st.audio_input("Record a voice of you",key=1)
-    if audio_value is not None:
-        st.audio(audio_value)
-        audio_bytes = audio_value.getvalue()
-        file_path = "./recorded_audio_en.wav"
-        with open(file_path, "wb") as file:
-            file.write(audio_bytes)
-
-        audio = AudioSegment.from_wav(file_path)
-        audio = audio.set_frame_rate(16000).set_channels(1)
-        output_file = "./recorded_audio_en.wav"
-        audio.export(output_file, format="wav") 
-        with open(file_path, "wb") as file:
-            file.write(audio_bytes) 
-        st.success(f"Audio saved and modified as {output_file}")
         
-        if (country := open("country.txt").read().strip()) == "English":
-            model = whisper.load_model("tiny")
-            audio = whisper.load_audio("./recorded_audio_en.wav")
-            result = model.transcribe(audio)
-            st.write(result["text"])
+    # if (country := open("country.txt").read().strip()) == "English":
+    #         model = whisper.load_model("tiny")
+    #         audio = whisper.load_audio("./recorded_audio_en.wav")
+    #         result = model.transcribe(audio)
+    #         st.write(result["text"])
 
         # elif (country := open("country.txt").read().strip()) == "Chinese":
         # elif (country := open("country.txt").read().strip()) == "Thailand":
