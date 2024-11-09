@@ -1,4 +1,4 @@
 streamlit-mic-recorder
 pydub 
-ffprobe
-ffmpeg
+ffprobe-python 
+ffmpeg-python
