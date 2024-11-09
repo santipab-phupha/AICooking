@@ -25,4 +25,4 @@ if audio:
     st.write("ผ่าน 4")
     st.audio(modified_audio.getvalue(), format='audio/wav')
     st.write("ผ่าน 5")
-    st.write("Playback with frame rate set to 16000 Hz and mono channel.")\
+    st.write("Playback with frame rate set to 16000 Hz and mono channel.")
