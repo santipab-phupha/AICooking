@@ -1,12 +1,10 @@
 import streamlit as st
-from streamlit_mic_recorder import mic_recorder
 from pydub import AudioSegment
 from aift.multimodal import textqa
 from aift import setting
 import configparser
 import requests
 import json
-import os
 import subprocess   
 
 setting.set_api_key('T69FqnYgOdreO5G0nZaM8gHcjo1sifyU')
