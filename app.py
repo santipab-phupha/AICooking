@@ -51,22 +51,22 @@ with col1:
         st.image("./Thai.jpg", use_container_width=True)
         if st.button("ประเทศไทย (ภาษากลาง)",use_container_width=True):
             config = configparser.ConfigParser()
-            config.read("config.ini")
+            config.read("./config.ini")
             config["DEFAULT"]["_server_port"] = "27016"
             config["SERVER"]["_server_port"] = "27016"
             country = "Thailand"
-            open("country.txt", "w").write("Thailand")
+            open("./country.txt", "w").write("Thailand")
             with open("config.ini", "w") as configfile:
                 config.write(configfile)
     with col5:
         st.image("./UK.png", use_container_width=True)
         if st.button("English",use_container_width=True):
-            open("country.txt", "w").write("English")
+            open("./country.txt", "w").write("English")
     with col6:
         st.image("./China.png", use_container_width=True)
         if st.button("Chinese",use_container_width=True):
             country = "Chinese"
-            open("country.txt", "w").write("Chinese")
+            open("./country.txt", "w").write("Chinese")
 
         
     # if (country := open("country.txt").read().strip()) == "English":
@@ -126,13 +126,13 @@ with col2:
             print(f"An error occurred: {e}")
 
     config = configparser.ConfigParser()
-    config.read("config.ini")
+    config.read("./config.ini")
 
     new_port = str(region_ports.get(selected_region, config["DEFAULT"].get("_server_port", "27021")))
     config["DEFAULT"]["_server_port"] = new_port
     config["SERVER"]["_server_port"] = new_port
 
-    with open("config.ini", "w") as configfile:
+    with open("./config.ini", "w") as configfile:
         config.write(configfile)
 
     audio_value = st.audio_input("Record a voice message",key=2)
