@@ -9,4 +9,3 @@ six==1.16.0
 streamlit==1.40.0
 requests
 configparser
-git+https://github.com/openai/whisper.git
