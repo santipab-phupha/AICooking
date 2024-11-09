@@ -6,3 +6,7 @@ jsonlib
 subprocess-run
 protobuf
 grpc
+time
+wave
+numpy 
+sys
