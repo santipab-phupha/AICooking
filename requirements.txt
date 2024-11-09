@@ -4,3 +4,5 @@ configparser
 requests
 jsonlib
 subprocess-run
+protobuf
+grpc
