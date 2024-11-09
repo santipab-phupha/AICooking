@@ -4,4 +4,6 @@ pydub
 aift
 configparser
 requests
-jsonlib-python3
+jsonlib
+os
+subprocess-run
