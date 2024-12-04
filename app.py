@@ -30,7 +30,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-setting.set_api_key('T69FqnYgOdreO5G0nZaM8gHcjo1sifyU')
+setting.set_api_key('AIFT-KEYS')
 
 # Create two columns
 
@@ -105,7 +105,7 @@ with col2:
             "language": language
         }
         headers = {
-            'Botnoi-Token': 'ZHBaNlR4WEI3dWgyZGVRajRMaGt5S3NXeUVZMjU2MTg5NA==',
+            'Botnoi-Token': 'BOTNOI-AI-KEYS',
             'Content-Type': 'application/json'
         }
 
@@ -150,7 +150,7 @@ with col2:
         audio.export(output_file, format="wav")
 
         st.success(f"Audio saved and modified as {output_file}")
-        command = ["python", "partii-client-process-wav-file.py", output_file, "T69FqnYgOdreO5G0nZaM8gHcjo1sifyU"]
+        command = ["python", "partii-client-process-wav-file.py", output_file, "AIFT-KEYS"]
         result = subprocess.run(command, capture_output=True, text=True)
 
         output_list = [line for line in result.stdout.strip().split('\n') if line.startswith("transcript")]
